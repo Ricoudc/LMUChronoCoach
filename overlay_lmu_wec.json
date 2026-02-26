@@ -1,0 +1,9 @@
+{
+  "name": "LMU Hypercar WEC Overlay",
+  "widgets": [
+    {"type": "text", "binding": "DataCorePlugin.GameData.LMUChronoCoach.Gear", "x": 960, "y": 850, "size": 140},
+    {"type": "bar", "binding": "DataCorePlugin.GameData.LMUChronoCoach.RPM", "x": 400, "y": 50, "width": 1100, "height": 40},
+    {"type": "text", "binding": "DataCorePlugin.GameData.LMUChronoCoach.LapDelta", "x": 960, "y": 120, "size": 55},
+    {"type": "text", "binding": "DataCorePlugin.GameData.LMUChronoCoach.CoachMessage", "x": 960, "y": 200, "size": 45}
+  ]
+}
