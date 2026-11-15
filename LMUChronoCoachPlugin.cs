@@ -1,14 +1,15 @@
 using GameReaderCommon;
 using SimHub.Plugins;
-using System;
 
 namespace LMUChronoCoach
 {
     [PluginDescription("Plugin LMU pour coaching chrono et télémétrie")]
     [PluginAuthor("ChatGPT")]
-    public class LMUChronoCoachPlugin : IPlugin, IDataPlugin, IWpfSettingsV2
+    public class LMUChronoCoachPlugin : IPlugin, IDataPlugin
     {
         private LMUSharedMemoryReader reader;
+
+        public PluginManager PluginManager { get; set; }
 
         public void Init(PluginManager manager)
         {
@@ -23,7 +24,7 @@ namespace LMUChronoCoach
 
         public void DataUpdate(PluginManager manager, ref GameData data)
         {
-            var lmu = reader.GetCurrentData();
+            var lmu = reader?.GetCurrentData();
             if (lmu == null) return;
 
             this.SetProperty("SpeedKmh", lmu.SpeedKmh);
@@ -35,14 +36,6 @@ namespace LMUChronoCoach
             this.SetProperty("CarName", lmu.CarName);
             this.SetProperty("TrackName", lmu.TrackName);
             this.SetProperty("CoachMessage", lmu.CoachMessage);
-        }
-
-        public System.Windows.Controls.Control GetWpfSettingsControl(PluginManager manager)
-        {
-            return new System.Windows.Controls.TextBlock
-            {
-                Text = "LMU Chrono Coach - Aucun réglage pour le moment."
-            };
         }
     }
 }
