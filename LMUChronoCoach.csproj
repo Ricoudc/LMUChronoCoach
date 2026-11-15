@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <RootNamespace>LMUChronoCoach</RootNamespace>
     <AssemblyName>LMUChronoCoach</AssemblyName>
     <OutputType>Library</OutputType>
   </PropertyGroup>
-
   <ItemGroup>
+    <Compile Remove="tests/**/*.cs" />
     <Reference Include="GameReaderCommon">
       <HintPath>lib/GameReaderCommon.dll</HintPath>
     </Reference>
@@ -15,5 +14,4 @@
       <HintPath>lib/SimHub.Plugins.dll</HintPath>
     </Reference>
   </ItemGroup>
-
 </Project>
