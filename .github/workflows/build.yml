@@ -1,28 +1,24 @@
-name: Build LMUChronoCoach Plugin
-
+name: LMU Chrono Coach CI
 on:
+  pull_request:
   push:
     branches: [ "main" ]
-
 jobs:
-  build:
+  build-plugin:
     runs-on: windows-latest
-
     steps:
-    - uses: actions/checkout@v4
-
-    - uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.0.x'
-
-    - name: Restore dependencies
-      run: dotnet restore LMUChronoCoach.csproj
-
-    - name: Build project
-      run: dotnet build LMUChronoCoach.csproj -c Release
-
-    - name: Upload compiled plugin
-      uses: actions/upload-artifact@v4
-      with:
-        name: LMUChronoCoach
-        path: bin/Release/
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Build SimHub plugin
+        run: dotnet build LMUChronoCoach.csproj -c Release
+  test-analysis-core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Test analysis core
+        run: dotnet test tests/LMUChronoCoach.Core.Tests/LMUChronoCoach.Core.Tests.csproj -c Release
